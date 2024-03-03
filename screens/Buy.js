@@ -6,7 +6,7 @@ const Buy = () => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('All');
-  
+
   useEffect(() => {
     // Fetch data from the API
     fetch('https://fakestoreapi.com/products')
@@ -27,7 +27,7 @@ const Buy = () => {
       setFilteredProducts(filtered);
     }
   }, [selectedCategory, products]);
-
+  
   return (
     <View style={styles.container}>
       <Picker
@@ -47,15 +47,13 @@ const Buy = () => {
         renderItem={({ item }) => (
           <View style={styles.card}>
             <View>
-            <Image source={{ uri: item.image }} style={styles.image} />
+              <Image source={{ uri: item.image }} style={styles.image} />
             </View>
             <View style={styles.cardText}>
-              
-            <Text style={styles.title}>{item.title}</Text>
-            <Text style={styles.category}>{item.category}</Text>
-            <Text style={styles.price}>${item.price}</Text>
+              <Text style={styles.title}>{item.title}</Text>
+              <Text style={styles.category}>Category : {item.category}</Text>
+              <Text style={styles.price}>Price : ${item.price}</Text>
             </View>
-            
           </View>
         )}
       />
@@ -77,12 +75,12 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 16,
     marginBottom: 16,
-    flexDirection:'row'
+    flexDirection: 'row'
   },
   image: {
     width: 100,
     height: 100,
-    resizeMode: 'cover',
+    resizeMode:'contain',
     marginBottom: 8,
     borderRadius: 8,
   },
@@ -95,9 +93,9 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: 'green',
   },
-  cardText:{
-    width:'60%',
-    marginLeft:20
+  cardText: {
+    width: '60%',
+    marginLeft: 20
   }
 });
 
